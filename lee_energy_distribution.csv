@@ -1,0 +1,46 @@
+# Pimblott & LaVerne, Radiation Physics and Chemistry 76 (2007) 1244-1247.
+# "Production of low-energy electrons by ionizing radiation"
+# DOI: 10.1016/j.radphyschem.2007.02.012
+#
+# Source constraints used:
+#   * sub-excitation electrons: E < 25 eV
+#   * ~27% in the 0-1 eV interval
+#   * remainder more-or-less equally distributed over 1-25 eV
+#   * mean electron energy ~9 eV
+#
+# Numerical implementation:
+#   Approximate reconstruction of the graphical distribution in Fig. 4.
+#   This is NOT a machine-readable table supplied by the paper.
+#   The 1-25 eV bins are gently tilted from a uniform distribution so that
+#   the reconstructed distribution satisfies the paper's reported ~9 eV
+#   mean while retaining the reported 27% in the 0-1 eV bin.
+#
+# energy_eV = 1-eV histogram-bin center
+# P_E = probability density in eV^-1; because each bin is 1 eV wide,
+# P_E is numerically equal to the probability mass in that bin.
+energy_eV,P_E
+0.5,0.27000000
+1.5,0.03666667
+2.5,0.03612319
+3.5,0.03557971
+4.5,0.03503623
+5.5,0.03449275
+6.5,0.03394928
+7.5,0.03340580
+8.5,0.03286232
+9.5,0.03231884
+10.5,0.03177536
+11.5,0.03123188
+12.5,0.03068841
+13.5,0.03014493
+14.5,0.02960145
+15.5,0.02905797
+16.5,0.02851449
+17.5,0.02797101
+18.5,0.02742754
+19.5,0.02688406
+20.5,0.02634058
+21.5,0.02579710
+22.5,0.02525362
+23.5,0.02471014
+24.5,0.02416667
