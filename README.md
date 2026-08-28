@@ -1,6 +1,6 @@
-# A transparent radiomic-DEA framework for prioritizing low-energy-electron radiosensitizer candidates
+# A transparent radiomic DEA framework for prioritizing low energy electron radiosensitizer candidates
 
-Code accompanying the manuscript "A transparent radiomic--DEA framework for
+Code accompanying the manuscript "Radiomic--DEA framework for
 prioritizing low energy electron radiosensitizer candidates" (Renjith Bhaskaran,
 submitted to *Physics in Medicine & Biology*).
 
@@ -12,8 +12,8 @@ NSCLC-Radiomics cohort (418 patients) are used to discover two CT-derived
 tumour phenotypes via unsupervised clustering, validated through bootstrap
 stability and supervised reproducibility checks. Each phenotype is weighted
 by a CT-derived relative electron density (RED) descriptor and combined with
-a reconstructed low-energy-electron (LEE) spectrum to score five
-literature-verified DEA cross-section records, with full Monte Carlo
+a reconstructed low energy electron (LEE) spectrum to score five
+literature verified DEA cross-section records, with full Monte Carlo
 uncertainty propagation over the resulting candidate ranking. The framework
 is a screening/prioritization tool, not a clinical prediction model.
 
