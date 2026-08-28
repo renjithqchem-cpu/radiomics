@@ -24,11 +24,11 @@ is a screening/prioritization tool, not a clinical prediction model.
 2. `extract_radiomics.py` -- runs PyRadiomics feature extraction on the
    converted images, producing `radiomics_features.csv` (107 features per
    patient).
-3. `correlate_analysis_v4_lee_peak.py` -- Spearman redundancy filtering,
+3. `correlate_analysis_lee_peak.py` -- Spearman redundancy filtering,
    standardization, PCA, k-means phenotype discovery, RED weighting, and
    LEE-bin assignment of the DEA database; produces the candidate ranking
    and phenotype summary tables.
-4. `cluster_stability_check_v4.py` -- bootstrap (200-resample) cluster-wise
+4. `cluster_stability_check.py` -- bootstrap (200-resample) cluster-wise
    Jaccard stability audit of the phenotype partition.
 5. `phenotype_classifier_check.py` -- supervised reproducibility check
    (random forest / logistic regression, 5-fold CV, permutation test) of the
