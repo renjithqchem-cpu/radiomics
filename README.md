@@ -39,9 +39,6 @@ is a screening/prioritization tool, not a clinical prediction model.
 7. `dea_resonance_profiles.py` -- source-controlled database of candidate
    DEA resonance profiles, with per-record evidence-type tagging
    (`computed` / `verified_primary` / `verified_secondary` / `unverified`).
-8. `final_technical_audit.py` -- end-to-end numerical consistency audit of
-   the full pipeline output (patient counts, RED formula, LEE probability
-   normalization, score arithmetic).
 
 ## Data inputs
 
