@@ -1,0 +1,41 @@
+# --- Patient / imaging data: never commit ---
+data/
+nsclc_radiomics/
+raw_downloads/
+*.nii
+*.nii.gz
+*.dcm
+
+# --- Large or superseded generated outputs ---
+radiomics_features.csv
+results_v2/
+results_v3/
+results_v3_1/
+results_v3_1_final/
+results_v4/
+metadata/
+project_plan/
+
+# NOTE: do not add a blanket "results/" rule here. This repo's results/
+# folder (see README) is meant to hold only the six small, final CSV
+# tables listed in the README -- add exactly those files by hand rather
+# than copying your local results/ directory wholesale, since that local
+# folder also contains large intermediate files (radiomics_features.csv,
+# PNGs, etc.) that should not be committed.
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+
+# --- Archives / working files not meant for the repo ---
+*.zip
+files.zip
+LEE_DEA_V4_upgrade.zip
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+*.swp

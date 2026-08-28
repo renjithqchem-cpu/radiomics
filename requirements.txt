@@ -1,0 +1,19 @@
+# Core scientific stack
+numpy>=1.24
+pandas>=1.5
+scipy>=1.10
+
+# Machine learning
+scikit-learn>=1.2
+
+# Plotting
+matplotlib>=3.6
+seaborn>=0.12
+
+# Medical imaging
+SimpleITK>=2.2
+pydicom>=2.3
+pyradiomics>=3.0
+
+# CLI utilities used by the scripts (argparse, pathlib) are part of the
+# Python 3.10 standard library and do not need to be listed here.
