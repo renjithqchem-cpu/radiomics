@@ -19,26 +19,68 @@ is a screening/prioritization tool, not a clinical prediction model.
 
 ## Pipeline order
 
-1. `dicom_to_nifti.py` -- converts TCIA DICOM CT + SEG downloads into
-   `image.nii.gz` / `mask.nii.gz` pairs.
-2. `extract_radiomics.py` -- runs PyRadiomics feature extraction on the
-   converted images, producing `radiomics_features.csv` (107 features per
-   patient).
-3. `correlate_analysis_lee_peak.py` -- Spearman redundancy filtering,
-   standardization, PCA, k-means phenotype discovery, RED weighting, and
-   LEE-bin assignment of the DEA database; produces the candidate ranking
-   and phenotype summary tables.
-4. `cluster_stability_check.py` -- bootstrap (200-resample) cluster-wise
-   Jaccard stability audit of the phenotype partition.
-5. `phenotype_classifier_check.py` -- supervised reproducibility check
-   (random forest / logistic regression, 5-fold CV, permutation test) of the
-   unsupervised phenotype labels.
-6. `dea_uncertainty_sensitivity.py` -- 10,000-simulation Monte Carlo
-   uncertainty propagation over the DEA database and RED weights, producing
-   rank probabilities and pairwise comparison probabilities.
-7. `dea_resonance_profiles.py` -- source-controlled database of candidate
-   DEA resonance profiles, with per-record evidence-type tagging
-   (`computed` / `verified_primary` / `verified_secondary` / `unverified`).
+The complete computational workflow is organized into 11 scripts, progressing from
+patient-level CT/segmentation conversion through radiomics extraction, phenotype
+discovery and validation, DEA/LEE scoring, uncertainty analysis, and final technical
+auditing.
+
+1. `dicom_to_nifti.py` -- converts per-patient TCIA DICOM CT series and segmentation
+   objects into standardized NIfTI image/mask pairs (`image.nii.gz` and
+   `mask.nii.gz`).
+
+2. `extract_radiomics.py` -- runs PyRadiomics feature extraction on the converted
+   NIfTI image/mask pairs, producing a patient-level radiomics feature table
+   containing 107 descriptors per patient.
+
+3. `correlate_analysis_lee_peak.py` -- performs Spearman redundancy filtering,
+   feature standardization, k-means phenotype discovery, REDproxy weighting,
+   LEE-bin assignment, and DEA-based candidate scoring. The script combines the
+   radiomics phenotype results with the source-controlled DEA database and LEE
+   distribution to produce phenotype labels, phenotype summaries, and candidate
+   ranking tables.
+
+4. `exact_pipeline_bootstrap.py` -- evaluates cluster stability using 1000 bootstrap
+   resamples. The clustering is refitted on the fixed 47-feature representation
+   selected in the primary analysis, and clusterwise Jaccard stability is calculated
+   after optimal label matching.
+
+5. `phenotype_classifier_check.py` -- performs a supervised reproducibility check
+   of the unsupervised phenotype labels using random forest and logistic regression
+   with five-fold cross-validation, together with a label-permutation significance
+   test. The outputs include balanced accuracy and permutation-based significance
+   measures.
+
+6. `cluster_null_permutation_test.py` -- evaluates whether the observed clustering
+   structure exceeds a feature-permutation null distribution by calculating the
+   maximum silhouette coefficient over k = 2--5 across 1000 feature permutations.
+   The output includes the null silhouette distribution and empirical p-value.
+
+7. `k2_vs_k3_bootstrap_deltaS.py` -- compares the k = 2 and k = 3 clustering
+   solutions using 1000 bootstrap resamples. The script generates the bootstrap
+   distribution of the silhouette difference (ΔS), its 95% percentile interval,
+   and the probability that ΔS is positive.
+
+8. `feature_threshold_sensitivity.py` -- evaluates the sensitivity of the phenotype
+   partition to alternative Spearman redundancy thresholds of 0.80, 0.85, 0.90,
+   and 0.95. The analysis reports retained feature counts, preferred k, cluster
+   sizes, ARI, NMI, and bootstrap stability measures.
+
+9. `dea_resonance_profiles.py` -- constructs the source-controlled DEA candidate
+   database, retaining the reported resonance energy, cross section, molecular
+   species/channel, evidence type, and provenance for each candidate. The script
+   produces `DEA_verified_scoring_data.csv`, which serves as the controlled input
+   to the DEA scoring and uncertainty analyses.
+
+10. `dea_uncertainty_sensitivity.py` -- performs Monte Carlo uncertainty propagation
+    using 10,000 simulations over the DEA scoring inputs. The analysis produces
+    candidate rank probabilities and pairwise comparison probabilities, allowing
+    the robustness of the candidate prioritization to be assessed.
+
+11. `final_technical_audit.py` -- performs final integrity checks of the complete
+    analysis, including patient counts, radiomics feature counts, REDproxy
+    weighting, LEE-distribution normalization, DEA energy-bin assignment, score
+    construction, and DEA data provenance. The script produces the final technical
+    audit report.
 
 ## Data inputs
 
