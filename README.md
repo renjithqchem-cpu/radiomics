@@ -1,7 +1,7 @@
 # A transparent radiomic DEA framework for prioritizing low energy electron radiosensitizer candidates
 
-Code accompanying the manuscript "Radiomic--DEA framework for
-prioritizing low energy electron radiosensitizer candidates" (Renjith Bhaskaran,
+Code accompanying the manuscript "A physics informed radiomics and low energy electron
+framework for radiosensitizer candidate prioritization" (Renjith Bhaskaran,
 submitted to *Physics in Medicine & Biology*).
 
 This repository implements a transparent computational framework that bridges
